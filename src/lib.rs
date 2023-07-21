@@ -1,14 +1,21 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+#![no_std]
+use core::cell::Cell;
+
+pub struct UpdateCell<T> {
+    value: Cell<Option<T>>
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+impl<T> UpdateCell<T> {
+    pub fn new(val: T) -> Self {
+        Self { value: Cell::new(Some(val)) }
+    }
+    
+    pub fn update<F: FnOnce(T) -> T>(&mut self, func: F) {
+        let val = self.value.take().unwrap();
+        self.value.set(Some(func(val)))
+    }
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    pub fn into_inner(self) -> T {
+        self.value.take().unwrap()
     }
 }
