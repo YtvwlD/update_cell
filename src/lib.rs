@@ -51,7 +51,7 @@ mod tests {
     fn into() {
         let cell = UpdateCell::new(Foo::new());
         let foo: Foo = cell.into_inner();
-        assert_eq!(foo.get(), false);
+        assert!(!foo.get());
     }
 
     #[test]
@@ -59,7 +59,7 @@ mod tests {
         let mut cell = UpdateCell::new(Foo::new());
         cell.update(|f| f.turn_on());
         let foo: Foo = cell.into_inner();
-        assert_eq!(foo.get(), true);
+        assert!(foo.get());
     }
 }
 
