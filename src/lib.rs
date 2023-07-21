@@ -1,4 +1,16 @@
+//! A Cell<Option<T>> that you can update
+//!
+//! # Usage
+//!
+//! Add this to your `Cargo.toml`:
+//! 
+//! ```toml
+//! [dependencies]
+//! update_cell = "0.1"
+//! ```
+
 #![no_std]
+#![doc(html_root_url = "https://docs.rs/update_cell/0.1.0")]
 use core::cell::Cell;
 
 pub struct UpdateCell<T> {
