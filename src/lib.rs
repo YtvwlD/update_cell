@@ -19,3 +19,47 @@ impl<T> UpdateCell<T> {
         self.value.take().unwrap()
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    struct Foo {
+        inner: bool
+    }
+
+    impl Foo {
+        fn new() -> Self {
+            Self { inner: false }
+        }
+
+        fn turn_on(mut self) -> Self {
+            self.inner = true;
+            self
+        }
+
+        fn get(&self) -> bool {
+            self.inner
+        }
+    }
+
+    #[test]
+    fn new() {
+        let _cell = UpdateCell::new(Foo::new());
+    }
+
+    #[test]
+    fn into() {
+        let cell = UpdateCell::new(Foo::new());
+        let foo: Foo = cell.into_inner();
+        assert_eq!(foo.get(), false);
+    }
+
+    #[test]
+    fn end_to_end() {
+        let mut cell = UpdateCell::new(Foo::new());
+        cell.update(|f| f.turn_on());
+        let foo: Foo = cell.into_inner();
+        assert_eq!(foo.get(), true);
+    }
+}
+
