@@ -1,7 +1,7 @@
 //! A `Cell<Option<T>>` that you can update
-//! 
+//!
 //! # Why would I need this?
-//! 
+//!
 //! [`Cell::update`] is currently experimental. And it only supports types
 //! that are `Copy`. So if you want to store and modify something that is
 //! neither `Copy` nor has a `Default` (eg. a builder), this crate might be
@@ -10,17 +10,17 @@
 //! # Usage
 //!
 //! Add this to your `Cargo.toml`:
-//! 
+//!
 //! ```toml
 //! [dependencies]
 //! update_cell = "0.1"
 //! ```
-//! 
+//!
 //! And if you have a struct, you can put it inside and modify it:
-//! 
+//!
 //! ```rust
 //! use update_cell::UpdateCell;
-//! 
+//!
 //! struct MySuperFancyStruct {
 //!     inner: bool
 //! }
@@ -35,7 +35,7 @@
 //!         self
 //!     }
 //! }
-//! 
+//!
 //! let mut cell = UpdateCell::new(MySuperFancyStruct::new());
 //! cell.update(|s| s.toggle());
 //! ```
@@ -45,18 +45,20 @@
 use core::cell::Cell;
 
 /// The main struct.
-/// 
+///
 /// Put whatever you want in here.
 pub struct UpdateCell<T> {
-    value: Cell<Option<T>>
+    value: Cell<Option<T>>,
 }
 
 impl<T> UpdateCell<T> {
     /// Create a new instance.
     pub fn new(val: T) -> Self {
-        Self { value: Cell::new(Some(val)) }
+        Self {
+            value: Cell::new(Some(val)),
+        }
     }
-    
+
     /// Modify the contained value by passing a function.
     pub fn update<F: FnOnce(T) -> T>(&mut self, func: F) {
         let val = self.value.take().unwrap();
@@ -73,7 +75,7 @@ impl<T> UpdateCell<T> {
 mod tests {
     use super::*;
     struct Foo {
-        inner: bool
+        inner: bool,
     }
 
     impl Foo {
@@ -111,4 +113,3 @@ mod tests {
         assert!(foo.get());
     }
 }
-

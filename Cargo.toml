@@ -6,7 +6,7 @@ description = "A Cell<Option<T>> that you can update"
 categories = ["rust-patterns", "no-std"]
 keywords = ["cell", "generic", "update"]
 readme = "README.md"
-edition = "2021"
+edition = "2024"
 license = "MPL-2.0"
 repository = "https://github.com/YtvwlD/update_cell"
 
