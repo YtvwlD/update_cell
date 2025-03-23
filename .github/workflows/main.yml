@@ -1,0 +1,17 @@
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
+    - name: Build
+      uses: clechasseur/rs-cargo@v3
+      with:
+        command: build
+    - name: Run tests
+      uses: clechasseur/rs-cargo@v3
+      with:
+        command: test
+        args: --all-features
