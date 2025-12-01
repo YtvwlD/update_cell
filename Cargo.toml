@@ -1,6 +1,6 @@
 [package]
 name = "update_cell"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Niklas Sombert <niklas@ytvwld.de>"]
 description = "A Cell<Option<T>> that you can update"
 categories = ["rust-patterns", "no-std"]
