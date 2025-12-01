@@ -2,10 +2,10 @@
 //!
 //! # Why would I need this?
 //!
-//! [`Cell::update`] is currently experimental. And it only supports types
-//! that are `Copy`. So if you want to store and modify something that is
-//! neither `Copy` nor has a `Default` (eg. a builder), this crate might be
-//! useful.
+//! [`Cell::update`](https://doc.rust-lang.org/core/cell/struct.Cell.html#method.update)
+//! only supports types that are `Copy`. So if you want to store and modify
+//! something that is neither `Copy` nor has a `Default` (eg. a builder),
+//! this crate might be useful.
 //!
 //! # Usage
 //!
