@@ -3,15 +3,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Install Rust
       uses: dtolnay/rust-toolchain@stable
     - name: Build
-      uses: clechasseur/rs-cargo@v3
+      uses: clechasseur/rs-cargo@v4
       with:
         command: build
     - name: Run tests
-      uses: clechasseur/rs-cargo@v3
+      uses: clechasseur/rs-cargo@v4
       with:
         command: test
         args: --all-features
